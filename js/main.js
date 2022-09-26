@@ -42,7 +42,40 @@ const consolas = [
 
 ];
 
+const especificacionesretro ={
+    generacion: "tercera y cuarta",
+    resolucion: "240 pixeles ",
+    bits: "de 8 a 16 ",
+    pantalla: "crt",
+}  
+
+
+const especificacionesactuales={
+    almacenamiento: "320 gigabyte",
+    hdmi: "velocidad 2.0 ",
+    online: "si",
+    juegos: " digitales y fisicos ",
+}
+
+//DESTRUCTURACION //
+
+const {generacion, resolucion, bits, pantalla} = especificacionesretro
+console.log(generacion)
+console.log(resolucion)
+console.log(bits)
+console.log(pantalla)
+
+const {almacenamiento,hdmi,online,juegos}=especificacionesactuales
+
+console.log(almacenamiento)
+console.log(hdmi)
+console.log(online)
+console.log(juegos)
+
+
+
 const containerDiv = document.querySelector(".container");
+const parrafo = document.querySelector(".parrafo");
 const carritoDiv = document.querySelector(".carrito");
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
@@ -112,3 +145,81 @@ function borrartodoslosProducto(){
 
 actualizarCarrito();
 Cards();
+
+const contactos = [];
+const botonValidarContacto = document.getElementById("agregarContacto")
+
+    function preventDefault(evt) {
+        evt.preventDefault();
+    }
+
+    botonValidarContacto.addEventListener("click", cargarNombre)
+    botonValidarContacto.addEventListener("click", cargarApellido)
+    botonValidarContacto.addEventListener("click", cargarTelefono)
+    botonValidarContacto.addEventListener("click", cargarAJSON)
+
+const botonLimpiarContacto = document.getElementById("limpiarContacto")
+    botonLimpiarContacto.addEventListener("click", limpiarStorage)
+    botonLimpiarContacto.addEventListener("click", alertaBorrado)
+
+function cargarNombre(){
+    let nombre = document.getElementById("nombre").value
+    contactos.push(nombre);
+}
+
+function cargarApellido(){
+    let apellido = document.getElementById("apellido").value
+    contactos.push(apellido)
+}
+
+function cargarTelefono(){
+    let telefono = document.getElementById("telefono").value
+    contactos.push(telefono)
+}
+
+function cargarAJSON (){
+    let contactosJSON = JSON.stringify(contactos)
+    localStorage.setItem("Datos de Contacto", contactosJSON)
+    console.log(contactosJSON);
+}
+
+function limpiarStorage(){
+    localStorage.clear(contactos)
+}
+
+function alertaBorrado(){
+    Swal.fire("tus datos  han sido borrados!")
+}
+
+function welcome(){
+    Swal.fire("Bienvenido/a a mi tienda</p>" + nombre +"</p>"+apellido+"!")
+}
+
+
+const datosContacto = JSON.parse(localStorage.getItem("Datos de Contacto")) || [];
+
+console.log(datosContacto);
+console.log(datosContacto[0]);
+console.log(datosContacto[1]);
+console.log(datosContacto[2]);
+
+console.log(datosContacto); 
+const datosContactoObj = {
+    datosContacto
+}
+console.log(datosContactoObj);
+
+console.log(datosContactoObj);
+
+const [a, b, c] = datosContacto
+
+console.log(a);
+console.log(b);
+let mensajeAlerta = 'Ingrese su nombre, apellido y numero de telefono para continuar'
+const nombre = a ?? "Debe ingresar su nombre"
+const apellido = b ?? " su apellido"
+const telefono = c ?? "Ingrese su numero de telefono"
+nombre === "" && Swal.fire(mensajeAlerta) || apellido === "" && Swal.fire(mensajeAlerta) || telefono === "" && Swal.fire(mensajeAlerta)
+parrafo.innerHTML= `<div class="datos de contacto" > </p><u>Nombre:</u> <b>${nombre}</b></p><u>Apellido:</u> <b>${apellido}</b></p><u>Telefono/Celular:</u> <b>${telefono}</b></div>`
+
+// welcome()

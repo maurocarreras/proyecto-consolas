@@ -33,14 +33,37 @@
     <div class="carrito" style="display: flex; flex-wrap:wrap;gap:10px"></div>
 
     
+    <h4 class="titulo-formulario">Ingresa tu nombre, apellido y telefono para contactarte</h4>
+    <div class="datos-contacto">  
+        
+        
+        <form id="formulario"> 
+                <input type="text" name="nombre" placeholder="Ingrese su nombre" value="" id="nombre">
+                <input type="text" name="apellido" placeholder="Ingrese su apellido" value="" id="apellido">
+                <input type="text" name="telefono" placeholder="Ingrese su numero de telefono" value="" id="telefono">
+                <button id="agregarContacto" onclick="preventDefault(event); welcome()">Agregar Contacto</button>
+
+        <p class="parrafo"></p>
+        
+        <p class="parrafo"></p>
+        
+        <p class="parrafo"></p>
+        
+        </form>
+        <button id="limpiarContacto">borrar Contacto</button></p>
+        </div>
+    
 
 <div class="footer">
     <footer>footer</footer>
 
 </div>
     
+<!-- ----------sweetalert ----------->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
+<!------- ------custom script ---------->
 <script src="./js/main.js"></script>
 </body>
 
