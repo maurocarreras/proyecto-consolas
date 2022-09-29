@@ -1,44 +1,50 @@
 const consolas = [
 
-{ id: 1, nombre: "Nes", precio: 12000  },
+{ id: 1, nombre: "Nintendo Nes", precio: 12000, img:"nes.jpg"  },
 
-{ id: 2, nombre: "Super Nintendo", precio: 18000 },
+{ id: 2, nombre: "Super Nintendo", precio: 18000, img:"supernintendo.jpg" },
 
-{ id: 3, nombre: "Sega Genesis", precio: 14000 },
+{ id: 3, nombre: "Sega Genesis", precio: 14000 , img:"segagenesis.jpg"},
 
-{ id: 4, nombre: "Play Station One", precio: 25000 },
+{ id: 4, nombre: "Play Station One", precio: 25000 , img:"playstationone.jpg"},
 
-{ id: 5, nombre: "Nintendo 64", precio: 30000 },
+{ id: 5, nombre: "Nintendo 64", precio: 30000 , img:"nintendo64.jpg"},
 
-{ id: 6, nombre: "Sega Dreamcast", precio: 35000 },
+{ id: 6, nombre: "Sega Dreamcast", precio: 35000 ,img:"segadreamcast.jpg"},
 
-{ id: 7, nombre: "Nintendo Game Cube", precio: 40000 },
+{ id: 7, nombre: "Nintendo Game Cube", precio: 40000 ,img:"nintendogamecube.jpg"},
 
-{ id: 8, nombre: "Play Station 2", precio: 37000 },
+{ id: 8, nombre: "Play Station 2", precio: 37000 , img:"playstation2.jpg"},
 
-{ id: 9, nombre: " Xbox", precio: 32500 },
+{ id: 9, nombre: " Xbox", precio: 32500,img:"xboxclasic.jpg" },
 
-{ id: 10, nombre: "Nintendo Wii", precio: 29700 },
+{ id: 10, nombre: "Nintendo Wii", precio: 29700 ,img:"nintendowii.jpg"},
 
-{ id: 11, nombre: "Game Boy ", precio: 24999 },
+{ id: 11, nombre: "Game Boy ", precio: 24999 , img:"nintendogameboy.jpg"},
 
-{ id: 12, nombre: "Nintendo DS", precio: 39800 },
+{ id: 12, nombre: "Nintendo DS", precio: 39800 , img:"nintendods.jpg"},
 
-{ id: 13, nombre: "Xbox 360", precio: 43200 },
+{ id: 13, nombre: "Xbox 360", precio: 43200 , img:"xbox360.jpg"},
 
-{ id: 14, nombre: "Play Station 3", precio: 51500 },
+{ id: 14, nombre: "Play Station 3", precio: 51500 ,img:"playstation3.jpg"},
 
-{id: 15 , nombre:"PC Gamer", precio: 127000},
+{id: 15 , nombre:"PC Gamer", precio: 267000, img:"pcgamer.jpg"},
 
-{id: 16 , nombre: "Nintendo DS", precio: 47000},
+{id: 16 , nombre: "Neo Geo Pocket", precio: 47000, img:"neogeo.jpg"},
 
-{id: 17 , nombre: "Game boy Color" , precio: 29300},
+{id: 17 , nombre: "Game boy Color" , precio: 29300, img:"gameboycolor.jpg"},
 
-{id: 18 , nombre: "Nintendo WiiU" , precio: 69200},
+{id: 18 , nombre: "Nintendo WiiU" , precio: 48500, img:"nintendowiiu.jpg"},
 
-{id: 19 , nombre: "Atari original" , precio: 45099},
+{id: 19 , nombre: "Atari 2600" , precio: 45099, img:"atari.jpg"},
 
-{ id: 20, nombre: "Nintendo 3DS", precio: 47500 },
+{ id: 20, nombre: "Nintendo 3DS", precio: 47500, img:"nintendo3ds.jpg" },
+
+{ id: 21, nombre: "Play Station 4", precio: 97500, img:"playstation4.jpg" },
+
+{ id: 22, nombre: "Xbox Series S", precio: 117500, img:"xboxseriess.jpg" },
+
+{ id: 23, nombre: "Play Station 5", precio: 217500, img:"playstation5.jpg" },
 
 ];
 
@@ -84,16 +90,19 @@ function Cards(){
             containerDiv.innerHTML +=`<div class = "tarjetas">
         <h4 class ="titulo-tarjeta">${element.nombre}</h4>
         <p class="precio">$${element.precio}</p>
+        <img class="card-img " src="../img/${element.img}" alt="">
         <button class="boton-tarjeta" id="btn-agregar${element.id}">Agregar al carrito</button>
         </div>`
     })
     agregarFuncionAlBoton();
+    
 }
 
 function agregarFuncionAlBoton(){
     consolas.forEach(producto=>{
         document.querySelector(`#btn-agregar${producto.id}`).addEventListener("click",()=>{
             agregarAlCarrito(producto)
+            alertaagregar()
         })
     })
 }
@@ -129,6 +138,7 @@ function actualizarCarrito(){
     })
     localStorage.setItem("carrito",JSON.stringify(carrito))
     borrartodoslosProducto()
+    
 }
 
 console.log(localStorage.getItem("carrito"));
@@ -138,7 +148,8 @@ function borrartodoslosProducto(){
         document.querySelector(`#btn-borrar${producto.id}`).addEventListener("click",()=>{
             let indice = carrito.findIndex(element=>element.id===producto.id);
             carrito.splice(indice,1);
-            actualizarCarrito()
+            actualizarCarrito();
+            alertaborrar();
         })
     })
 }
@@ -195,6 +206,13 @@ function welcome(){
     Swal.fire("Bienvenido/a a mi tienda</p>" + nombre +"</p>"+apellido+"!")
 }
 
+function alertaagregar(){
+    Swal.fire("se agrego tu producto al carrito")
+}
+
+function alertaborrar(){
+    Swal.fire("producto eliminado del carrito")
+}
 
 const datosContacto = JSON.parse(localStorage.getItem("Datos de Contacto")) || [];
 
@@ -203,11 +221,11 @@ console.log(datosContacto[0]);
 console.log(datosContacto[1]);
 console.log(datosContacto[2]);
 
-console.log(datosContacto); 
+console.log(...datosContacto); 
 const datosContactoObj = {
-    datosContacto
+    ...datosContacto
 }
-console.log(datosContactoObj);
+
 
 console.log(datosContactoObj);
 
@@ -220,6 +238,4 @@ const nombre = a ?? "Debe ingresar su nombre"
 const apellido = b ?? " su apellido"
 const telefono = c ?? "Ingrese su numero de telefono"
 nombre === "" && Swal.fire(mensajeAlerta) || apellido === "" && Swal.fire(mensajeAlerta) || telefono === "" && Swal.fire(mensajeAlerta)
-parrafo.innerHTML= `<div class="datos de contacto" > </p><u>Nombre:</u> <b>${nombre}</b></p><u>Apellido:</u> <b>${apellido}</b></p><u>Telefono/Celular:</u> <b>${telefono}</b></div>`
-
-// welcome()
+parrafo.innerHTML= `<div class="datos-contacto" > </p><u>Nombre:</u> <b>${nombre}</b></p><u>Apellido:</u> <b>${apellido}</b></p><u>Telefono/Celular:</u> <b>${telefono}</b></div>`
