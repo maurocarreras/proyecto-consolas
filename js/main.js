@@ -79,7 +79,7 @@ console.log(online)
 console.log(juegos)
 
 
-
+const contenedorrkg = document.querySelector(".ranking");
 const containerDiv = document.querySelector(".container");
 const parrafo = document.querySelector(".parrafo");
 const carritoDiv = document.querySelector(".carrito");
@@ -239,3 +239,33 @@ const apellido = b ?? " su apellido"
 const telefono = c ?? "Ingrese su numero de telefono"
 nombre === "" && Swal.fire(mensajeAlerta) || apellido === "" && Swal.fire(mensajeAlerta) || telefono === "" && Swal.fire(mensajeAlerta)
 parrafo.innerHTML= `<div class="datos-contacto" > </p><u>Nombre:</u> <b>${nombre}</b></p><u>Apellido:</u> <b>${apellido}</b></p><u>Telefono/Celular:</u> <b>${telefono}</b></div>`
+
+
+const pedirconsolas=()=>{
+    return new Promise((resolve, reject) => {
+        setTimeout(()=>{
+            resolve(consolas)
+        },2500)
+    })
+}
+
+
+async function API () {
+    const URL = "./js/data.json";
+    const response = await fetch(URL);
+    const data = await response.json();
+    console.log(data)
+    ranking(data)
+}
+
+API();
+
+
+function ranking(array){
+    array.forEach(element=>{
+        contenedorrkg.innerHTML +=`<div class = "tarjetas">
+        <h4 class ="rkgnombre">${element.nombre}</h4>
+        <p class="rkgplataforma">${element.plataforma}</p>
+        </div>`
+    })
+}

@@ -1,0 +1,54 @@
+
+
+  [
+   {
+      "id":1,
+      "nombre":"Red Dead Redemption 2",
+      "plataforma":"PS4"
+   },
+   {
+      "id":2,
+      "nombre":"FIFA 23",
+      "plataforma":"PS5"
+   },
+   {
+      "id":3,
+      "nombre":"Grand Theft Auto VI",
+      "plataforma":"Xbox Series"
+   },
+   {
+      "id":4,
+      "nombre":"Mario Galaxy 2",
+      "plataforma":"Nintendo Wii"
+   },
+   {
+      "id":5,
+      "nombre":"Resident Evil 4",
+      "plataforma":"PS2"
+   },
+   {
+      "id":6,
+      "nombre":"Uncharted ",
+      "plataforma":"PS3"
+   },
+   {
+      "id":7,
+      "nombre":"The Witcher 3 ",
+      "plataforma":"PC"
+   },
+   {
+      "id":8,
+      "nombre":"The last of us ",
+      "plataforma":"PS3"
+   },
+   {
+      "id":9,
+      "nombre":"Halo",
+      "plataforma":"Xbox 360"
+   },
+   {
+      "id":10,
+      "nombre":"Super mario 64 ",
+      "plataforma":"Nintendo 64"
+   }
+]
